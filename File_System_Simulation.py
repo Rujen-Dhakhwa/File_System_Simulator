@@ -1,5 +1,6 @@
 from Commands import Status  # Assuming Status class or enum is defined elsewhere
 
+
 # Simulated file system structure
 file_structure_dict = {
     "root": ["c", "d"],  # Root contains two directories
@@ -91,6 +92,13 @@ def rename_file(old_name, new_name):
     else:
         print(f"Error: File '{old_name}' not found in {current_dir}.")
 
+def Print_Directory(current_dir):
+    last_dir=current_dir.split("/")[-1]
+    if current_dir=="root":
+        print("You are in the main directory")
+    else:
+        print(f"You are in {last_dir} directory")
+
 
 def show_help():
     """Display available commands."""
@@ -98,7 +106,7 @@ def show_help():
 
 
 if __name__ == '__main__':
-    print("Welcome to File and Command System.")
+    print("Welcome to File System Simulation.")
     print("Type 'help' for available commands and 'quit' to exit.")
 
     while True:
@@ -150,6 +158,9 @@ if __name__ == '__main__':
                     rename_file(old_name, new_name)
             else:
                 print("Error: Usage: renamefile <old_name> <new_name>")
+
+        elif command==Status.PRINT_DIRECTORY.command:
+            Print_Directory(current_dir)
         elif command in ["h", "help"]:
             show_help()
         else:
